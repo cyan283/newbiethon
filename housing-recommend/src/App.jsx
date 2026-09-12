@@ -7,6 +7,7 @@ import PriorityRanking from './components/PriorityRanking';
 import AnalyzingLoading from './components/AnalyzingLoading';
 import Top5Results from './components/Top5Results';
 import './styles/SchoolSelector.css';
+import RegionDetail from './components/RegionDetail';
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -437,117 +438,11 @@ const handlePriorityNext = async (rankedList) => {
 
         {/* STEP 7 */}
         {currentStep === 7 && (
-          <section
-            className="school-selector-section"
-            style={{ minHeight: '460px' }}
-          >
-
-            <div className="top-nav-bar">
-              <button
-                type="button"
-                className="prev-step-back-btn"
-                onClick={handleDetailPrev}
-              >
-                ← TOP 5 목록으로 돌아가기
-              </button>
-
-              {selectedSchool && (
-                <div className="current-school-pill">
-
-                  <span
-                    className="school-color-dot"
-                    style={{
-                      backgroundColor:
-                        selectedSchool.themeColor
-                    }}
-                  />
-
-                  <span className="school-pill-name">
-                    {selectedSchool.name}
-                  </span>
-
-                </div>
-              )}
-
-            </div>
-
-
-            <div className="selector-header">
-
-              <div
-                className="step-tag"
-                style={{
-                  background: '#eff6ff',
-                  color: '#2563eb'
-                }}
-              >
-                REGION DETAIL
-              </div>
-
-              <h1 className="main-title">
-
-                <span className="highlight">
-                  {selectedRegion?.region ||
-                    selectedRegion?.name}
-                </span>
-
-                <br />
-
-                상세 지역 분석
-
-              </h1>
-
-              <p className="sub-title">
-                총점수:{' '}
-
-                <strong>
-                  {selectedRegion?.score ??
-                    selectedRegion?.totalScore}
-                  점
-                </strong>
-              </p>
-
-            </div>
-
-
-            <div
-              style={{
-                background: '#f8fafc',
-                borderRadius: '16px',
-                padding: '24px',
-                border: '1.5px dashed #cbd5e1',
-                textAlign: 'center',
-                margin: '20px 0'
-              }}
-            >
-
-              <p
-                style={{
-                  color: '#0f172a',
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  margin: '0 0 8px 0'
-                }}
-              >
-                🏠{' '}
-                {selectedRegion?.region ||
-                  selectedRegion?.name}{' '}
-                선택 완료!
-              </p>
-
-              <p
-                style={{
-                  color: '#64748b',
-                  fontSize: '13.5px',
-                  margin: 0
-                }}
-              >
-                상세 지역 데이터를 표시할 수 있습니다.
-              </p>
-
-            </div>
-
-          </section>
+          <RegionDetail
+            selectedRegion={selectedRegion}
+            selectedSchool={selectedSchool}
+            onPrev={handleDetailPrev}
+          />
         )}
 
       </div>
@@ -556,3 +451,4 @@ const handlePriorityNext = async (rankedList) => {
 }
 
 export default App;
+
