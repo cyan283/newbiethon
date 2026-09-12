@@ -180,7 +180,7 @@ function App() {
       // -------------------------------------------------
 
       const response = await fetch(
-        'http://127.0.0.1:8000/recommend',
+        'https://newbiethon.onrender.com/recommend',
         {
           method: 'POST',
 
