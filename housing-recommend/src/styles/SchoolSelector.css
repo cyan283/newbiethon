@@ -602,3 +602,1229 @@
 .next-step-button.active:active {
   transform: translateY(0);
 }
+
+/* ============================================================
+   STEP 02: 통학 횟수 입력 컴포넌트 스타일
+   ============================================================ */
+
+/* 상단 이전 버튼 및 선택된 학교 표시 */
+.top-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.prev-step-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.prev-step-back-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.current-school-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.school-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.school-pill-name {
+  white-space: nowrap;
+}
+
+/* 메인 카운터 카드 */
+.commute-counter-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 28px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.counter-stepper-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 24px;
+}
+
+.counter-ctrl-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.counter-ctrl-btn:hover:not(.disabled) {
+  border-color: #2563eb;
+  color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+}
+
+.counter-ctrl-btn:active:not(.disabled) {
+  transform: translateY(0);
+}
+
+.counter-ctrl-btn.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+.counter-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+}
+
+.counter-number {
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1;
+  color: #2563eb;
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
+  transition: all 0.2s ease;
+}
+
+.counter-unit {
+  font-size: 14px;
+  font-weight: 700;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* 1~7 퀵 선택 칩 그리드 */
+.count-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .count-chips-grid {
+    gap: 6px;
+  }
+}
+
+.count-chip-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.chip-day-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+
+.chip-number {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.count-chip-btn:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  transform: translateY(-2px);
+}
+
+.count-chip-btn.selected {
+  background: #eff6ff;
+  border-color: #2563eb;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.15);
+  transform: translateY(-2px);
+}
+
+.count-chip-btn.selected .chip-day-label {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.count-chip-btn.selected .chip-number {
+  color: #1d4ed8;
+}
+
+/* 실시간 맞춤 팁 카드 */
+.commute-tip-card {
+  background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 100%);
+  border: 1.5px solid #bfdbfe;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-sizing: border-box;
+  width: 100%;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tip-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tip-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tip-emoji {
+  font-size: 18px;
+}
+
+.tip-badge-text {
+  font-size: 13px;
+  font-weight: 800;
+  color: #1e40af;
+}
+
+.tip-tag-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #047857;
+  background: #dcfce7;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.sparkle-icon {
+  flex-shrink: 0;
+}
+
+.tip-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.tip-description {
+  font-size: 13.5px;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ============================================================
+   STEP 03: 교통카드 혜택 및 환승 횟수 스타일
+   ============================================================ */
+
+.transit-question-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.question-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.question-icon-wrap {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.question-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+/* 질문 1: 교통카드 3개 수직 카드 */
+.transit-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.transit-card-item {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.transit-card-item:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.transit-card-item.selected {
+  background: #eff6ff;
+  border-color: #2563eb;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.12);
+}
+
+.check-badge-mini {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.transit-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.transit-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.transit-card-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.transit-card-desc {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.transit-card-item.selected .transit-card-desc {
+  color: #3b82f6;
+}
+
+/* 질문 2: 환승 횟수 4개 (2x2 그리드) */
+.transfer-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 440px) {
+  .transfer-options-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.transfer-card-item {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  user-select: none;
+  min-height: 86px;
+  display: flex;
+  flex-direction: column;
+}
+
+.transfer-card-item:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.transfer-card-item.selected {
+  background: #eff6ff;
+  border-color: #2563eb;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.12);
+}
+
+.transfer-card-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.transfer-card-sub {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 6px;
+}
+
+.transfer-card-desc {
+  font-size: 11.5px;
+  color: #64748b;
+  line-height: 1.35;
+  margin-top: auto;
+}
+
+.transfer-card-item.selected .transfer-card-desc {
+  color: #475569;
+}
+
+/* ============================================================
+   STEP 04: 터치 순서에 따른 중요도 1, 2, 3순위 선택 스타일
+   ============================================================ */
+
+/* 상단 1, 2, 3순위 슬롯 인디케이터 바 */
+.priority-slots-bar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.priority-slot-box {
+  background: #f8fafc;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 10px 8px;
+  text-align: center;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 58px;
+  box-sizing: border-box;
+}
+
+.priority-slot-box.next-target {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  border-style: solid;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+.priority-slot-box.filled {
+  border-style: solid;
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.slot-rank-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.priority-slot-box.filled .slot-rank-badge {
+  color: #2563eb;
+}
+
+.slot-item-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.slot-placeholder {
+  font-size: 11.5px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.priority-slot-box.next-target .slot-placeholder {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* 3개 조건 카드 리스트 */
+.touch-priority-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.touch-priority-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.touch-priority-card:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* 터치 순위 표시 원형 뱃지 */
+.touch-rank-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.touch-rank-indicator.active {
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+  transform: scale(1.08);
+}
+
+.rank-number-text {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.rank-empty-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+/* 선택된 카드 랭크별 스타일 */
+.touch-priority-card.selected.rank-1 {
+  border-color: #2563eb;
+  background: #eff6ff;
+  box-shadow: 0 4px 18px rgba(37, 99, 235, 0.12);
+  transform: translateY(-2px);
+}
+
+.touch-priority-card.selected.rank-2 {
+  border-color: #64748b;
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.touch-priority-card.selected.rank-3 {
+  border-color: #94a3b8;
+  background: #fbfcfe;
+}
+
+.touch-rank-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.priority-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.priority-text-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.priority-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 3px;
+  flex-wrap: wrap;
+}
+
+.priority-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.priority-sub-pill-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 4px;
+}
+
+.priority-desc {
+  font-size: 12.5px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* 하단 안내 및 리셋 버튼 */
+.priority-help-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #94a3b8;
+  padding: 0 4px;
+}
+
+.ranking-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.ranking-reset-btn:hover {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+/* ============================================================
+   STEP 05: 백엔드 계산 대기 화면 스타일
+   ============================================================ */
+
+.loading-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 펄스 레이더 & 회전 아이콘 */
+.loading-hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.pulse-radar-ring {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pulse-circle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.15);
+  animation: radarRipple 2.2s infinite cubic-bezier(0, 0.2, 0.8, 1);
+}
+
+.pulse-2 {
+  animation-delay: 1.1s;
+}
+
+@keyframes radarRipple {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.loading-icon-center {
+  position: relative;
+  z-index: 2;
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.spinning-compass {
+  animation: spinCompass 8s infinite linear;
+}
+
+@keyframes spinCompass {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-main-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.35;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.loading-sub-text {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+/* 계산 게이지 바 */
+.analyzing-progress-bar-wrap {
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+}
+
+.analyzing-progress-bar-track {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.analyzing-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border-radius: 9999px;
+  transition: width 0.25s ease-out;
+}
+
+.analyzing-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  color: #64748b;
+}
+
+.analysis-step-desc {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.sparkle-loading-icon {
+  animation: pulseSlot 1s infinite alternate;
+}
+
+.analysis-percentage {
+  font-weight: 800;
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 사용자 설문 결과 요약 카드 (첨부 이미지 스타일 기반) */
+.survey-summary-card {
+  width: 100%;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 20px 22px;
+  box-sizing: border-box;
+  text-align: left;
+  margin-top: 6px;
+}
+
+.survey-summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.summary-card-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summary-card-icon {
+  font-size: 16px;
+}
+
+.summary-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.ready-badge {
+  font-size: 11px;
+  font-weight: 800;
+  color: #2563eb;
+  background: #eff6ff;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.survey-profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-item-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13.5px;
+}
+
+@media (max-width: 460px) {
+  .profile-item-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+.profile-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #64748b;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.profile-icon {
+  color: #94a3b8;
+}
+
+.profile-value {
+  color: #0f172a;
+  text-align: right;
+  word-break: break-all;
+}
+
+@media (max-width: 460px) {
+  .profile-value {
+    text-align: left;
+    padding-left: 21px;
+  }
+}
+
+.profile-sub-tag {
+  color: #64748b;
+  margin-left: 4px;
+  font-weight: normal;
+}
+
+.priority-chain {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+@media (max-width: 460px) {
+  .priority-chain {
+    justify-content: flex-start;
+  }
+}
+
+.rank-token {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.rank-token-1 {
+  color: #2563eb;
+}
+
+.rank-token-2 {
+  color: #334155;
+}
+
+.rank-token-3 {
+  color: #64748b;
+}
+
+.chain-arrow {
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* ============================================================
+   STEP 06: TOP 5 추천 결과 화면 스타일
+   ============================================================ */
+
+.results-section {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.top5-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}
+
+.result-item-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  text-align: left;
+}
+
+.result-item-card:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* Top 1 특별 강조 */
+.result-item-card.top1-highlight-card {
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.08);
+}
+
+/* 카드 상단 헤더 */
+.result-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 14px;
+}
+
+.result-rank-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.top-rank-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  letter-spacing: 0.3px;
+}
+
+.top-rank-badge.badge-top1 {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+
+.trophy-icon {
+  color: #eab308;
+  flex-shrink: 0;
+}
+
+.result-region-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.result-score-box {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  background: #f8fafc;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.score-caption {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 600;
+  margin-right: 2px;
+}
+
+.score-number {
+  font-size: 20px;
+  font-weight: 800;
+  color: #2563eb;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.score-unit {
+  font-size: 12px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+/* 본문 3대 분석 블록 */
+.result-analysis-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.analysis-sub-block {
+  background: #f8fafc;
+  border: 1px solid #eef2f6;
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.sub-block-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.sub-title-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sub-block-icon {
+  flex-shrink: 0;
+}
+
+.housing-icon {
+  color: #059669;
+}
+
+.commute-icon {
+  color: #2563eb;
+}
+
+.cost-icon {
+  color: #d97706;
+}
+
+.sub-block-heading {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.sub-block-score {
+  font-size: 13px;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.sub-block-details-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sub-block-details-list li {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #475569;
+}
+
+.bullet {
+  color: #94a3b8;
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+.detail-key {
+  color: #64748b;
+  margin-right: 8px;
+}
+
+.detail-value {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* 카드 하단 상세 지역 보기 버튼 */
+.card-footer-action {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+
+.view-detail-region-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.view-detail-region-btn:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+
+
+
+
+

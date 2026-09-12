@@ -1,11 +1,12 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 
-export default function StepProgress({ currentStep = 1, totalSteps = 3 }) {
+export default function StepProgress({ currentStep = 1, totalSteps = 4 }) {
   const steps = [
     { number: 1, title: '학교 선택' },
     { number: 2, title: '통학 횟수' },
-    { number: 3, title: '중요도 설정' }
+    { number: 3, title: '교통·환승' },
+    { number: 4, title: '중요도 설정' }
   ];
 
   const progressPercent = ((currentStep - 1) / (totalSteps - 1)) * 100;
