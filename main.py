@@ -10,19 +10,25 @@ app = FastAPI(
     title="Student Housing Recommendation API"
 )
 
+
 # =====================================================
 # CORS 설정
-# 프론트엔드(React/Vite)에서 백엔드 API 호출 허용
 # =====================================================
+# 로컬 개발 환경 + Vercel 배포 환경 허용
 
 app.add_middleware(
     CORSMiddleware,
+
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
         "http://localhost:5174",
         "http://127.0.0.1:5174",
     ],
+
+    # Vercel의 모든 *.vercel.app 주소 허용
+    allow_origin_regex=r"https://.*\.vercel\.app",
+
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -67,6 +73,7 @@ class RecommendationRequest(BaseModel):
 
 @app.get("/")
 def root():
+
     return {
         "message": "Student Housing Recommendation API"
     }
@@ -182,6 +189,7 @@ def recommend(
         df["university"] == request.university
     ].copy()
 
+
     if university_df.empty:
 
         raise HTTPException(
@@ -228,9 +236,11 @@ def recommend(
 
     recommendations = []
 
+
     for _, row in result.head(5).iterrows():
 
         rent = int(row["median_rent"])
+
 
         recommendations.append({
 
@@ -246,13 +256,16 @@ def recommend(
                     1
                 ),
 
+
             # 계산용 숫자
             "rent":
                 rent,
 
+
             # 표시용 문자열
             "rent_text":
                 f"{rent}만원",
+
 
             "deposit":
                 (
@@ -261,6 +274,7 @@ def recommend(
                     else None
                 ),
 
+
             "deposit_text":
                 (
                     f"{int(row['median_deposit'])}만원"
@@ -268,20 +282,26 @@ def recommend(
                     else None
                 ),
 
+
             "transaction_count":
                 int(row["transaction_count"]),
+
 
             "commute_time":
                 int(row["commute_time"]),
 
+
             "transfers":
                 int(row["transfers"]),
+
 
             "walking_time":
                 int(row["walking_time"]),
 
+
             "one_way_transport_cost":
                 int(row["transport_cost"]),
+
 
             "original_monthly_transport_cost":
                 round(
@@ -292,6 +312,7 @@ def recommend(
                     )
                 ),
 
+
             "monthly_transport_cost":
                 round(
                     float(
@@ -300,6 +321,7 @@ def recommend(
                         ]
                     )
                 ),
+
 
             "scores": {
 
@@ -351,6 +373,7 @@ def recommend(
         "use_modu_card":
             request.use_modu_card,
 
+
         "applied_weights": {
 
             "rent":
@@ -377,6 +400,7 @@ def recommend(
                     3
                 )
         },
+
 
         "recommendations":
             recommendations
